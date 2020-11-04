@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "931709040626",
+    "firebase_url": "https://diem-danh-ae3a6.firebaseio.com",
+    "project_id": "diem-danh-ae3a6",
+    "storage_bucket": "diem-danh-ae3a6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:931709040626:android:23dbb7fc7c5b0755a29d6b",
+        "android_client_info": {
+          "package_name": "com.example.maqrcode"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "931709040626-2129koh6louan32pu55rdj1ff0977gk9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBXwNgaAiE2TF2AVefw0zQ0zDNmZRL11dk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "931709040626-2129koh6louan32pu55rdj1ff0977gk9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
