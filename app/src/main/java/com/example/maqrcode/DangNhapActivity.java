@@ -54,11 +54,15 @@ public class DangNhapActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            Toast.makeText(getApplicationContext(), "Dang Nhap Thanh Cong" ,Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "Đăng nhập thành công!" ,Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(DangNhapActivity.this, MainActivity.class);
+                            String userId = mAuth.getUid().toString();
+                            Bundle data = new Bundle();
+                            data.putString("userId", userId);
+                            intent.putExtra("DATA",data);
                             startActivity(intent);
                         } else {
-                            Toast.makeText(getApplicationContext(), "Sai tk hoac MK" ,Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "Tài khoản hoặc mật khẩu không đúng. Mời nhập lại!" ,Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

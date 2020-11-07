@@ -10,14 +10,14 @@
         android:id="@+id/txtmonhoc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
+        android:text="LẬP TRÌNH ỨNG DỤNG ANDROID!"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="250dp"/>
+        android:layout_marginTop="50dp"/>
     <TextView
         android:id="@+id/txtngayhoc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ngay hoc"
+        android:text="Scan QR code điểm danh"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/txtmonhoc"/>
     <Button
