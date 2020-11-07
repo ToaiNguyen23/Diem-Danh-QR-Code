@@ -66,15 +66,18 @@ public class DangKyActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
                             //dung
-                            Toast.makeText(getApplicationContext(), "Dang Ky Thanh Cong" ,Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "Đăng ký thành công" ,Toast.LENGTH_SHORT).show();
                             keyid = mAuth.getUid().toString();
                             mData.child("LT di Dong").child(keyid).setValue(sv);
                             Intent intent = new Intent(DangKyActivity.this, MainActivity.class);
+                            Bundle data = new Bundle();
+                            data.putString("userId", keyid);
+                            intent.putExtra("DATA",data);
                             startActivity(intent);
                         }
                         else {
                             //loi
-                            Toast.makeText(getApplicationContext(), "Loi" ,Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "Lỗi" ,Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

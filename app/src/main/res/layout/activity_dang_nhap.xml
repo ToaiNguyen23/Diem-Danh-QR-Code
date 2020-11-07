@@ -6,6 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity"
     android:orientation="vertical">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:text="ĐĂNG NHẬP"
+        android:textSize="25sp"
+        android:layout_marginBottom="10dp"
+        android:layout_height="wrap_content"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -14,12 +21,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Gmail"/>
+            android:text="Tài khoản:"/>
 
         <EditText
             android:id="@+id/txtgmail"
             android:layout_width="wrap_content"
             android:layout_weight="3"
+            android:textSize="15sp"
+            android:hint="Đăng nhập bằng tài khoản gmail"
             android:layout_height="wrap_content"/>
     </LinearLayout>
     <LinearLayout
@@ -30,25 +39,27 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Password"/>
+            android:text="Mật khẩu: "/>
 
         <EditText
             android:inputType="textPassword"
             android:id="@+id/txtpass"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:hint="Nhập mật khẩu ... "
+            android:textSize="15sp"
             android:layout_weight="3"/>
     </LinearLayout>
 
     <Button
-        android:text="Dang Nhap"
+        android:text="Đăng nhâp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/btndangnhap" />
 
 
     <Button
-        android:text="Dang ky"
+        android:text="Đăng ký (bấm vào đây nếu chưa có tài khoản)"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/btndangky" />
