@@ -1,13 +1,17 @@
 package com.example.maqrcode;
 
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -21,10 +25,20 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.RetryPolicy;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 public class Xem_Danh_Sach extends AppCompatActivity {
-
+    Button btn_xuat;
     SinhVienAdapter adapter = null;
     ListView list;
     private List<SinhVien> ds_Sinh_Vien = new ArrayList<SinhVien>();
@@ -39,7 +53,7 @@ public class Xem_Danh_Sach extends AppCompatActivity {
         list = findViewById(R.id.list);
         adapter = new SinhVienAdapter();
         list.setAdapter(adapter);
-
+        btn_xuat = findViewById(R.id.btn_xuat);
         mSinhVienReference = database.getReference().child("LT di Dong");
         mSinhVienReference.addValueEventListener(new ValueEventListener() {
             @Override
@@ -57,32 +71,157 @@ public class Xem_Danh_Sach extends AppCompatActivity {
 
             }
         });
+
+        btn_xuat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    deleteItemToSheet();
+                    Thread.sleep(500);
+                    add_tieu_de();
+                    Thread.sleep(500);
+                } catch (InterruptedException e)
+                {
+                    e.printStackTrace();
+                }
+                for (SinhVien a:ds_Sinh_Vien
+                ) {
+                    String ten = a.getHoten();
+                    String ma = a.getMssv();
+                    String buoi_1 = a.getBuoi1();
+                    String buoi_2 = a.getBuoi2();
+                    String buoi_3 = a.getBuoi3();
+                    String buoi_4 = a.getBuoi4();
+                    String buoi_5 = a.getBuoi5();
+                    String buoi_6 = a.getBuoi6();
+                    addItemToSheet(ten,ma,buoi_1,buoi_2,buoi_3,buoi_4,buoi_5,buoi_6);
+                    try {
+                        Thread.sleep(500);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+                Intent intent = new Intent(Xem_Danh_Sach.this,Xuat_excel.class);
+                startActivity(intent);
+            }
+        });
     }
-    private void getData()
-    {
-        SinhVien a = new SinhVien();
-        a.hoten = "Phan Nguyen Manh Hoang";
-        a.mssv = "171770058";
-        a.buoi1= "1";
-        a.buoi2="1";
-        a.buoi3="0";
-        a.buoi4="1";
-        a.buoi5="0";
-        a.buoi6="1";
-        ds_Sinh_Vien.add(a);
-        SinhVien b = new SinhVien();
-        b.hoten = "Toai";
-        b.mssv = "171770058";
-        b.buoi1= "0";
-        b.buoi2="0";
-        b.buoi3="0";
-        b.buoi4="0";
-        b.buoi5="0";
-        b.buoi6="0";
-        ds_Sinh_Vien.add(b);
+    // Xoá mọi thứ trong excel để tạo ra trang tính mới
+    private void deleteItemToSheet() {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, "https://script.google.com/macros/s/AKfycby07MdKx1L57jX7P1YAc2YrWkXTOjGXkbm-kMewqjCYL5ddxzU/exec",
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                }
+        ) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> parmas = new HashMap<>();
+
+                //here we pass params
+                parmas.put("action","xoa");
+                return parmas;
+            }
+        };
+
+        int socketTimeOut = 50000;// u can change this .. here it is 50 seconds
+
+        RetryPolicy retryPolicy = new DefaultRetryPolicy(socketTimeOut, 1, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+        stringRequest.setRetryPolicy(retryPolicy);
+
+        RequestQueue queue = Volley.newRequestQueue(this);
+
+        queue.add(stringRequest);
+    }
+    // Tạo ra dòng  đầu tiên trong trang tính với các trạng thái MSSV,ho_ten,các buổi học
+    private void add_tieu_de() {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, "https://script.google.com/macros/s/AKfycby07MdKx1L57jX7P1YAc2YrWkXTOjGXkbm-kMewqjCYL5ddxzU/exec",
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                }
+        ) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> parmas = new HashMap<>();
+
+                //here we pass params
+                parmas.put("action","tieu_de");
+                return parmas;
+            }
+        };
+
+        int socketTimeOut = 50000;// u can change this .. here it is 50 seconds
+
+        RetryPolicy retryPolicy = new DefaultRetryPolicy(socketTimeOut, 1, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+        stringRequest.setRetryPolicy(retryPolicy);
+
+        RequestQueue queue = Volley.newRequestQueue(this);
+
+        queue.add(stringRequest);
 
     }
+    // them tung dong vao sheet
+    private void addItemToSheet(final String ten, final String ma, final String b1,final String b2,final String b3, final String b4, final String b5, final String b6) {
 
+        final ProgressDialog loading = ProgressDialog.show(this,"Đang xuất danh sách","Vui lòng đợi");
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, "https://script.google.com/macros/s/AKfycby07MdKx1L57jX7P1YAc2YrWkXTOjGXkbm-kMewqjCYL5ddxzU/exec",
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        loading.dismiss();
+                        Toast.makeText(Xem_Danh_Sach.this,response,Toast.LENGTH_LONG).show();
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                }
+        ) {
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> parmas = new HashMap<>();
+
+                //here we pass params
+                parmas.put("action","addItem");
+                parmas.put("Name",ten);
+                parmas.put("MSSV",ma);
+                parmas.put("tuan_1",b1);
+                parmas.put("tuan_2",b2);
+                parmas.put("tuan_3",b3);
+                parmas.put("tuan_4",b4);
+                parmas.put("tuan_5",b5);
+                parmas.put("tuan_6",b6);
+                return parmas;
+            }
+        };
+
+        int socketTimeOut = 50000;// u can change this .. here it is 50 seconds
+
+        RetryPolicy retryPolicy = new DefaultRetryPolicy(socketTimeOut, 1, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT);
+        stringRequest.setRetryPolicy(retryPolicy);
+
+        RequestQueue queue = Volley.newRequestQueue(this);
+
+        queue.add(stringRequest);
+
+    }
     class SinhVienAdapter extends ArrayAdapter<SinhVien>{
         public SinhVienAdapter(Context context,int textViewReSourceId)
         {
