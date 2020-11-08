@@ -28,7 +28,7 @@ public class DangKyActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dang_ky);
+        setContentView(R.layout.dang_ky_new_layout);
 
         anhxa();
         mAuth = FirebaseAuth.getInstance();

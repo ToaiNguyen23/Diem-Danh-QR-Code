@@ -6,8 +6,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -19,16 +21,20 @@ public class DangNhapActivity extends AppCompatActivity {
 
     Button btndangky,btndangnhap;
     EditText txtgmail,txtpass;
+    ImageView image;
     private FirebaseAuth mAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dang_nhap);
+        setContentView(R.layout.dang_nhap_new_layout);
+
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         btndangky = (Button) findViewById(R.id.btndangky);
         btndangnhap = (Button) findViewById(R.id.btndangnhap);
         txtgmail = (EditText) findViewById(R.id.txtgmail);
         txtpass = (EditText) findViewById(R.id.txtpass);
+        image = (ImageView) findViewById(R.id.imglogo);
 
         mAuth = FirebaseAuth.getInstance();
         btndangky.setOnClickListener(new View.OnClickListener() {
