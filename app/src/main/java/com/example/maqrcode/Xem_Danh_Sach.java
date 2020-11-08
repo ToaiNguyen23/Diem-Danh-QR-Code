@@ -1,5 +1,6 @@
 package com.example.maqrcode;
 
+import android.app.LauncherActivity;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -10,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -241,7 +243,7 @@ public class Xem_Danh_Sach extends AppCompatActivity {
 
             }
             SinhVien a = ds_Sinh_Vien.get(position);
-            String tmp = a.hoten +"-" +a.mssv;
+            String tmp = "Họ tên SV: "+a.hoten +" MSSV: " +a.mssv;
             String buoi_1 = "Buổi 1:"+a.buoi1;
             String buoi_2 = "Buổi 2:"+a.buoi2;
             String buoi_3 = "Buổi 3:"+a.buoi3;

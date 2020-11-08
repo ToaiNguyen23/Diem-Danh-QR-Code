@@ -8,8 +8,9 @@
     app:layoutDescription="@xml/gvactivity_scene" >
 
     <LinearLayout
+        android:layout_marginTop="100dp"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="200dp"
         android:orientation="vertical">
 
         <LinearLayout
@@ -20,6 +21,8 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="38dp"
+                android:textStyle="bold"
+                android:textSize="20dp"
                 android:textAlignment="center"
                 android:text="Lấy QR code" />
         </LinearLayout>
@@ -30,28 +33,35 @@
             android:orientation="vertical">
 
             <Button
+                android:layout_marginTop="50dp"
                 android:id="@+id/btnLayHinh"
-                android:layout_width="218dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="100dp"
-                android:text="Lấy mã QR" />
+                android:layout_width="100dp"
+                android:layout_height="50dp"
+                android:layout_marginLeft="160dp"
+                android:background="@drawable/custom_button"
+                android:text="Lấy QR code" />
         </LinearLayout>
 
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="122dp"
+        android:layout_height="150dp"
         android:orientation="vertical">
         <TextView
             android:layout_width="match_parent"
             android:layout_height="38dp"
+            android:textStyle="bold"
+            android:textSize="20dp"
             android:textAlignment="center"
-            android:text="Xem danh sach" />
+            android:text="Xem danh sách dưới dạng list" />
         <Button
             android:id="@+id/btnDanhSach"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginLeft="160dp"
+            android:background="@drawable/custom_button"
             android:text="Xem danh sách" />
     </LinearLayout>
 </LinearLayout>
