@@ -55,8 +55,14 @@ public class DangNhapActivity extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             Toast.makeText(getApplicationContext(), "Đăng nhập thành công!" ,Toast.LENGTH_SHORT).show();
-                            Intent intent = new Intent(DangNhapActivity.this, MainActivity.class);
+                            Intent intent;
                             String userId = mAuth.getUid().toString();
+                            if (userId.equals("BDw9cEsBCjVyzdaSvPS94VAieGE3")) {
+                                intent = new Intent(DangNhapActivity.this, GVActivity.class);
+
+                            } else {
+                                intent = new Intent(DangNhapActivity.this, MainActivity.class);
+                            }
                             Bundle data = new Bundle();
                             data.putString("userId", userId);
                             intent.putExtra("DATA",data);
