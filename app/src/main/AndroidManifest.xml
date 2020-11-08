@@ -19,6 +19,7 @@
         <activity android:name=".DangKyActivity" />
         <activity android:name=".QR_Code"/>
         <activity android:name=".Xem_Danh_Sach"/>
+        <activity android:name=".Xuat_excel"/>
         <activity android:name=".DangNhapActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
