@@ -1,5 +1,10 @@
 package com.example.maqrcode;
 
+import com.google.firebase.database.Exclude;
+
+import java.util.HashMap;
+import java.util.Map;
+
 public class SinhVien {
     public String hoten;
     public String mssv;
@@ -86,5 +91,20 @@ public class SinhVien {
 
     public void setBuoi6(String buoi6) {
         this.buoi6 = buoi6;
+    }
+
+    @Exclude
+    public Map<String, Object> toMap() {
+        HashMap<String, Object> result = new HashMap<>();
+        result.put("hoten", hoten);
+        result.put("mssv", mssv);
+        result.put("buoi1", buoi1);
+        result.put("buoi2", buoi2);
+        result.put("buoi3", buoi3);
+        result.put("buoi4", buoi4);
+        result.put("buoi5", buoi5);
+        result.put("buoi6", buoi6);
+
+        return result;
     }
 }
