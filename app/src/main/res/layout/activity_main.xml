@@ -4,15 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="#fff">
 
     <TextView
         android:id="@+id/txtmonhoc"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="LẬP TRÌNH ỨNG DỤNG ANDROID!"
+        android:text="SCAN CODE NTH"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="50dp"/>
+        android:textSize="30sp"
+        android:layout_marginTop="100dp"/>
     <TextView
         android:id="@+id/txtngayhoc"
         android:layout_width="wrap_content"
@@ -20,13 +22,22 @@
         android:text="Scan QR code điểm danh"
         android:layout_centerHorizontal="true"
         android:layout_below="@id/txtmonhoc"/>
+    <ImageView
+        android:id="@+id/imgview"
+        android:layout_width="500dp"
+        android:layout_height="200dp"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/lgo"
+        android:layout_marginTop="220dp"/>
     <Button
+        android:background="@drawable/custom_button"
         android:layout_below="@id/txtngayhoc"
         android:text="Scan QR"
         android:layout_centerHorizontal="true"
         android:id="@+id/btnscan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="350dp"
         />
 
 </RelativeLayout>
